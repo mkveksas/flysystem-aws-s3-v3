@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "mkveksas/flysystem": "^1.0.67",
+        "league/flysystem": "^1.0.40",
         "aws/aws-sdk-php": "^3.0.0"
     },
     "require-dev": {
