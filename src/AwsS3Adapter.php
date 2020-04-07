@@ -594,7 +594,10 @@ class AwsS3Adapter extends AbstractAdapter implements CanOverwriteFiles
 
         if (!$this->isOnlyDir($path)) {
             if ( ! isset($options['ContentType'])) {
-                $options['ContentType'] = Util::guessMimeType($path, $body);
+                // The first 10000 bytes of the file is hopefully enough to guess the mime type,
+                // otherwise if we send the whole file, we might run out of memory depending on
+                // the file size.
+                $options['ContentType'] = Util::guessMimeType($path, substr($body, 0, 10000));
             }
 
             if ( ! isset($options['ContentLength'])) {
